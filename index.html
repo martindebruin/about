@@ -5,23 +5,281 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Martin de Bruin</title>
   <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #0f0f0f;
-      color: #e0e0e0;
-      font-family: 'Courier New', monospace;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f5f4f0;
+      --surface: #ffffff;
+      --border: #e0ddd6;
+      --text: #2c2c2c;
+      --muted: #888;
+      --accent: #5a7a6a;
+      --tag-bg: #eef2ef;
+      --tag-text: #3d5c4a;
+      --link: #3a5f7a;
     }
-    p { color: #888; font-size: 0.9rem; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Georgia', serif;
+      line-height: 1.7;
+      padding: 4rem 1.5rem;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 2.5rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: normal;
+      color: var(--text);
+    }
+
+    .location {
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-family: 'Courier New', monospace;
+      margin-top: 0.2rem;
+    }
+
+    /* About box */
+    .about-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.4rem 1.6rem;
+      margin-bottom: 3rem;
+    }
+
+    .about-box p {
+      color: var(--text);
+      font-size: 0.98rem;
+    }
+
+    /* Section heading */
+    h2 {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      color: var(--accent);
+      font-family: 'Courier New', monospace;
+      margin-bottom: 1.1rem;
+    }
+
+    /* Project grid */
+    .projects {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .project {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.1rem 1.3rem;
+      text-decoration: none;
+      display: block;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .project:hover {
+      border-color: var(--accent);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .proj-name {
+      color: var(--link);
+      font-family: 'Courier New', monospace;
+      font-size: 0.92rem;
+    }
+
+    .proj-lang {
+      color: var(--muted);
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      white-space: nowrap;
+    }
+
+    .proj-desc {
+      color: var(--text);
+      font-size: 0.9rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tag {
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      padding: 0.15rem 0.55rem;
+      border-radius: 3px;
+    }
+
+    footer {
+      margin-top: 4rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    footer a { color: var(--link); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
-  <div>
-    <h1 style="font-weight:normal;font-family:Georgia,serif;font-size:2rem;margin:0 0 0.5rem">Martin de Bruin</h1>
-    <p>Stockholm &mdash; more soon.</p>
+
+  <header>
+    <h1>Martin de Bruin</h1>
+    <div class="location">Stockholm, Sweden</div>
+  </header>
+
+  <div class="about-box">
+    <p>
+      Software developer based in Stockholm. I build tools I actually use — AI integrations,
+      personal analytics dashboards, geospatial apps, and data pipelines. Most things run in
+      Docker on a self-hosted setup. Lately focused on LLM-based automation and real-time voice.
+    </p>
   </div>
+
+  <section>
+    <h2>Projects &mdash; 2026</h2>
+    <div class="projects">
+
+      <a class="project" href="https://github.com/martindebruin/mdb-voice-assist" target="_blank" rel="noopener">
+        <div class="project-header">
+          <span class="proj-name">mdb-voice-assist</span>
+          <span class="proj-lang">Python</span>
+        </div>
+        <div class="proj-desc">Self-hosted AI phone assistant for real-time inbound and outbound PSTN calls. Transcribes speech, generates LLM replies, and speaks back with a cloned voice.</div>
+        <div class="tags">
+          <span class="tag">FastAPI</span>
+          <span class="tag">Twilio</span>
+          <span class="tag">WebSockets</span>
+          <span class="tag">Anthropic Claude</span>
+          <span class="tag">Docker</span>
+          <span class="tag">SQLite</span>
+        </div>
+      </a>
+
+      <a class="project" href="https://github.com/martindebruin/grotfluence-image-describer" target="_blank" rel="noopener">
+        <div class="project-header">
+          <span class="proj-name">grotfluence-image-describer</span>
+          <span class="proj-lang">Python</span>
+        </div>
+        <div class="proj-desc">Automated content pipeline: images sent via Telegram are described by a local vision model, refined by Claude, and posted to WordPress — no manual writing needed.</div>
+        <div class="tags">
+          <span class="tag">FastAPI</span>
+          <span class="tag">Anthropic Claude</span>
+          <span class="tag">llava-phi3</span>
+          <span class="tag">Telegram Bot API</span>
+          <span class="tag">WordPress REST API</span>
+          <span class="tag">Docker</span>
+        </div>
+      </a>
+
+      <a class="project" href="https://github.com/martindebruin/burg-tracker" target="_blank" rel="noopener">
+        <div class="project-header">
+          <span class="proj-name">burg-tracker</span>
+          <span class="proj-lang">Python + JavaScript</span>
+        </div>
+        <div class="proj-desc">Full-stack app for tracking Burgundy Premier and Grand Crus. Includes terroir data, tasting notes, scraping tools, and an interactive map.</div>
+        <div class="tags">
+          <span class="tag">FastAPI</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">React</span>
+          <span class="tag">Vite</span>
+          <span class="tag">BeautifulSoup</span>
+          <span class="tag">Docker</span>
+          <span class="tag">JWT auth</span>
+        </div>
+      </a>
+
+      <a class="project" href="https://github.com/martindebruin/dietTracker" target="_blank" rel="noopener">
+        <div class="project-header">
+          <span class="proj-name">dietTracker</span>
+          <span class="proj-lang">JavaScript</span>
+        </div>
+        <div class="proj-desc">Personal dashboard for tracking diet, weight, sleep, and training. Visualises trends over time.</div>
+        <div class="tags">
+          <span class="tag">React 18</span>
+          <span class="tag">Vite</span>
+          <span class="tag">Recharts</span>
+          <span class="tag">React Router</span>
+          <span class="tag">Docker</span>
+          <span class="tag">nginx</span>
+        </div>
+      </a>
+
+      <a class="project" href="https://github.com/martindebruin/turf-docker" target="_blank" rel="noopener">
+        <div class="project-header">
+          <span class="proj-name">turf-docker</span>
+          <span class="proj-lang">PHP + Node.js</span>
+        </div>
+        <div class="proj-desc">Personal analytics and tracking app for the Turf geo-tagging game. Multi-service setup with a PHP frontend and a Node.js data backend.</div>
+        <div class="tags">
+          <span class="tag">PHP</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">Express</span>
+          <span class="tag">Docker Compose</span>
+        </div>
+      </a>
+
+      <a class="project" href="https://github.com/martindebruin/landskapsquiz" target="_blank" rel="noopener">
+        <div class="project-header">
+          <span class="proj-name">landskapsquiz</span>
+          <span class="proj-lang">TypeScript</span>
+        </div>
+        <div class="proj-desc">Quiz app about Swedish landscape symbols. Statically served, built with TypeScript and Vite.</div>
+        <div class="tags">
+          <span class="tag">TypeScript</span>
+          <span class="tag">Vite</span>
+        </div>
+      </a>
+
+      <a class="project" href="https://github.com/martindebruin/systembolaget" target="_blank" rel="noopener">
+        <div class="project-header">
+          <span class="proj-name">systembolaget</span>
+          <span class="proj-lang">Python</span>
+        </div>
+        <div class="proj-desc">Data pipeline and tooling around Systembolaget's product catalogue. Includes Discord and Mattermost integrations and a MongoDB-backed web app.</div>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">MongoDB</span>
+          <span class="tag">Discord</span>
+          <span class="tag">Mattermost</span>
+          <span class="tag">Docker Compose</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <footer>
+    <span>martindebruin.github.io/about</span>
+    <a href="https://github.com/martindebruin" target="_blank" rel="noopener">github.com/martindebruin</a>
+  </footer>
+
 </body>
 </html>
